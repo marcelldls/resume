@@ -4,14 +4,13 @@ jobs:
   Build_Release:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch dependancies
-        run: docker pull ghcr.io/xu-cheng/texlive-full:latest
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build
         run: |
-          docker run -v $(pwd):/source ghcr.io/xu-cheng/texlive-full:latest /bin/bash \
-          -c "make -C source/${{ github.event.repository.name }}"
+          docker run ghcr.io/xu-cheng/texlive-full:latest \
+          -v ${{ github.event.repository.name }}:/source \
+          /bin/bash -c "make -C source/"
       - name: Store
         uses: actions/upload-artifact@v4
         with:
