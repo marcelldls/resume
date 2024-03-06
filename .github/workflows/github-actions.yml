@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependancies
-        run: sudo apt-get install -y pdflatex
+        run: sudo apt-get install -y texlive-latex-base
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build
