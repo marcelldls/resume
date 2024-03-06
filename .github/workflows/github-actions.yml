@@ -5,13 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch dependancies
-        run: docker pull cristiangreco/pdflatex
+        run: docker pull ghcr.io/xu-cheng/texlive-full:latest
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build
         run: |
-          docker run -v $(pwd):/sources cristiangreco/pdflatex /bin/sh \
-          -c "make -C sources/${{ github.event.repository.name }}"
+          docker run -v $(pwd):/source xu-cheng/texlive-full /bin/bash \
+          -c "make -C source/${{ github.event.repository.name }}"
       - name: Store
         uses: actions/upload-artifact@v4
         with:
