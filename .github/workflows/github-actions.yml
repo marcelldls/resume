@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build
         run: |
-          docker run -v $(pwd):/source xu-cheng/texlive-full /bin/bash \
+          docker run -v $(pwd):/source ghcr.io/xu-cheng/texlive-full:latest /bin/bash \
           -c "make -C source/${{ github.event.repository.name }}"
       - name: Store
         uses: actions/upload-artifact@v4
