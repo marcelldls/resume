@@ -4,12 +4,14 @@ jobs:
   Build_Release:
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependancies
-        run: sudo apt-get install -y texlive-latex-base
+      - name: Fetch dependancies
+        run: docker pull cristiangreco/pdflatex
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build
-        run: make -C ${{ github.event.repository.name }}
+        run: >
+        docker run -v $(pwd):/sources cristiangreco/pdflatex /bin/sh
+        -c "make -C sources/${{ github.event.repository.name }}"
       - name: Store
         uses: actions/upload-artifact@v4
         with:
