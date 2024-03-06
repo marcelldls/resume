@@ -9,7 +9,7 @@ jobs:
       - name: Build
         run: |
           docker run \
-          -v ${{ github.event.repository.name }}:/source \
+          -v ./${{ github.event.repository.name }}:/source \
           ghcr.io/xu-cheng/texlive-full:latest \
           /bin/bash -c "make -C source/"
       - name: Store
