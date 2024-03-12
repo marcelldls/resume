@@ -6,11 +6,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run:  echo ./${{ github.event.repository.name }}:/source
       - name: Build
         run: |
           docker run \
-          -v ./${{ github.event.repository.name }}:/source \
+          -v $(pwd):/source \
           ghcr.io/xu-cheng/texlive-full:latest \
           /bin/bash -c "make -C /source/"
       - name: Store
