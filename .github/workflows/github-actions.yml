@@ -4,6 +4,8 @@ jobs:
   Build_Release:
     runs-on: ubuntu-latest
     steps:
+      - name: Print all environment variables
+        run: env
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build
@@ -12,6 +14,8 @@ jobs:
           -v $(pwd):/source \
           ghcr.io/xu-cheng/texlive-full:latest \
           /bin/bash -c "make -C /source/"
+      - name: rename
+        run: mv MarcellNagy_Resume.pdf MarcellNagy_Resume_${GITHUB_REF##*/}.pdf 
       - name: Store
         uses: actions/upload-artifact@v4
         with:
