@@ -15,7 +15,6 @@ jobs:
           ghcr.io/xu-cheng/texlive-full:latest \
           /bin/bash -c "make -C /source/"
       - name: rename
-        # if: startsWith(github.ref, 'refs/tags/')
         run: mv MarcellNagy_Resume.pdf MarcellNagy_Resume_${GITHUB_REF##*/}.pdf 
       - name: Store
         uses: actions/upload-artifact@v4
